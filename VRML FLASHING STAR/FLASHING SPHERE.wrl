@@ -1,0 +1,56 @@
+#VRML V2.0 utf8
+WorldInfo {
+ title "Untitled3"
+ info ["This Web3D Content was created with Vivaty Studio, a Web3D authoring tool"
+ "www.mediamachines.com"]
+}
+## Vizthumbnail  Thumb_Untitled3_wrl25443001587022275.jpg
+DEF Sphere1 Shape {
+ appearance Appearance {
+  material DEF Black Material {
+   ambientIntensity 0.200
+   shininess 0.200
+   diffuseColor 0 0 0
+  }
+ }
+ geometry DEF GeoSphere1 Sphere {
+  radius 1.000
+ }
+}
+DEF CM TimeSensor {
+ cycleInterval 1.000
+ loop TRUE
+ startTime -1.000
+}
+DEF REFRESH TimeSensor {
+ cycleInterval 0.100
+ loop TRUE
+ startTime -1.000
+}
+DEF dad_CM1P Transform {
+ translation 6.05604 -.99341 -5.03893
+ children [
+  DEF CM1P ColorInterpolator {
+   key [
+   0 .0833 .0833 .167 .167 1
+   ]
+   keyValue [
+   .3 .2 .8
+   .3 .2 .8
+   1 1 0
+   1 1 0
+   .3 .2 .8
+   .3 .2 .8
+   ]
+  }
+ ]
+}
+DEF vizx_init TimeSensor {
+ cycleInterval 0.100
+ loop TRUE
+}
+ROUTE vizx_init.cycleTime TO CM.startTime
+ROUTE vizx_init.cycleTime TO REFRESH.startTime
+ROUTE vizx_init.cycleTime TO vizx_init.stopTime
+ROUTE CM.fraction_changed TO CM1P.set_fraction
+ROUTE CM1P.value_changed TO Black.set_diffuseColor
